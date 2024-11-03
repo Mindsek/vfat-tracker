@@ -51,7 +51,7 @@ export const ProgressRange = ({ position, className }: ProgressRangeProps) => {
       <div className="relative">
         <div className="h-2 bg-secondary rounded-full overflow-hidden"></div>
         <div
-          className="absolute top-1/2 w-2 h-6 bg-foreground -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-1/2 w-2 h-4 bg-foreground -translate-x-1/2 -translate-y-1/2"
           style={{ left: `${currentPercentage}%` }}
         />
       </div>

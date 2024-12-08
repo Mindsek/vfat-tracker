@@ -52,6 +52,14 @@ const HeaderPosition = ({ position }: { position: VFatPosition }) => {
 };
 
 const Tokens = ({ position }: { position: VFatPosition }) => {
+  const pendingRewards = position.pendingRewards[0];
+  const tokenRewardsSymbol = pendingRewards.token.symbol;
+  const tokenRewardsPrice = pendingRewards.token.price;
+  const tokenRewardsAmount =
+    parseFloat(pendingRewards.amount) / 10 ** pendingRewards.token.decimals;
+
+  const totalRewards = tokenRewardsAmount * tokenRewardsPrice;
+
   return (
     <div className="space-y-1">
       {position.underlying.map((token) => (
@@ -71,6 +79,12 @@ const Tokens = ({ position }: { position: VFatPosition }) => {
           </div>
         </div>
       ))}
+
+      <span className="text-muted-foreground text-xs">
+        Rewards: {formatNumber(totalRewards, { currency: true })} (
+        {formatNumber(tokenRewardsAmount, { decimals: 2 })}){" "}
+        {tokenRewardsSymbol}
+      </span>
     </div>
   );
 };
